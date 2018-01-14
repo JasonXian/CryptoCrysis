@@ -122,7 +122,7 @@ class Main extends Component {
                         <form className="form-group" onSubmit={this.submitData}>
                             <label htmlFor="investedMoney">Put ($USD)</label>
                             <input type="number" name="investedMoney" min="0" id="investedMoney" className="form-control" 
-                                value={this.state.investedMoney} required onChange={(e) => this.setState({investedMoney: e.target.value})}/>
+                                value={this.state.investedMoney} onChange={(e) => this.setState({investedMoney: e.target.value})}/>
                             <label htmlFor="cryptoCurr">Into</label>
                             <select name="cryptoCurr" id="cryptoCurr" className="form-control" 
                                 value={this.state.cryptoCurr} onChange={this.updateDateRange}>
@@ -136,7 +136,7 @@ class Main extends Component {
                             </select>
                             <label htmlFor="purchaseDate">On</label>
                             <input type="date" name="purchaseDate" id="purchaseDate" min={this.state.minDate} max={this.state.currentDate} className="form-control" 
-                                value={this.state.purchaseDate} required onChange={(e) => this.setState({purchaseDate: e.target.value})}/>
+                                value={this.state.purchaseDate} onChange={(e) => this.setState({purchaseDate: e.target.value})}/>
                             <input className="btn btn-primary" type="submit" value={this.state.status}/>
                             <h4>
                                 It would have costed ${this.state.purchasePrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
