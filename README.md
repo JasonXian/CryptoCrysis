@@ -6,4 +6,6 @@ Currently pulling historical data from CryptoCompare API and utilizing AJAX fund
 
 Supports: Bitcoin, Bitcoin Cash, Dash, Dogecoin, Ethereum, Litecoin, Ripple and more to come!
 
+Demo is hosted at: https://cryptocrysis.herokuapp.com/, feel free to give me any feedback!
+
 Disclaimer: This site in no way intends to support/urge users to purchase cryptocurrencies, as they are high risk and extremely volatile. Please do your research before you buy!
