@@ -18,5 +18,17 @@
 
 .btn{
     margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#addBtn{
+    margin-top: 0;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+#removeBtn{
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 

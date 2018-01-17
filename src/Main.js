@@ -18,16 +18,16 @@ var getDateUnix = function(date){
 
 var flavourTextSad = ["Yikes.", "Better luck next time!", "Guess you didn't hop on the bandwagon fast enough...", "Hopefully you still have a job..", "It's bound to go back up!"];
 var flavourTextNeutral = ["Not bad, not great.", "It could be worse.", "It'll explode in no time!", "It could be better.", "Just keep on waiting..."];
-var flavourTextHappy = ["You're rich!", "Why would you ever hold that long... but congrats!", "You should probably sell quick!", "Well, time to quit your job.", "Lucky!!!"];
+var flavourTextHappy = ["You're rich!", "You're crazy for holding that long ... but congrats!", "You should probably sell quick!", "Well, time to quit your job.", "Lucky!"];
 
 var getFlavourText = function(investedMoney, currentPrice, purchasePrice){
     var flavourText;
     var randomNum = Math.floor(Math.random() * 5);
     if(investedMoney === 0){
         flavourText = "";    
-    }else if(currentPrice - purchasePrice >= 100){
+    }else if(currentPrice/purchasePrice >= 100){
         flavourText = flavourTextHappy[randomNum];
-    }else if(currentPrice - purchasePrice < 0){
+    }else if(currentPrice/purchasePrice < 1){
         flavourText = flavourTextSad[randomNum];
     }else{
         flavourText = flavourTextNeutral[randomNum];
@@ -47,7 +47,7 @@ class Main extends Component {
             purchaseDate: "2010-08-17",
             purchasePrice: 0,
             status: "Fetch Data",
-            flavourText: ""
+            flavourText: "\n"
         }
         this.submitData = this.submitData.bind(this);
         this.updateDateRange = this.updateDateRange.bind(this);
@@ -110,18 +110,18 @@ class Main extends Component {
     render() {
         var amountMade = (this.state.investedMoney / this.state.purchasePrice * this.state.currentPrice) || 0;
         var rounding = 2;
+        if(this.state.purchasePrice === "XRP") rounding = 4;
         if(this.state.cryptoCurr === "DOGE") rounding = 6;
-        if(this.state.cryptoCurr === "XRP") rounding = 4;
         return (
-            <div className="container">
+            <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
-                    <h2>What if I ... </h2>
+                    <h2>What if you... </h2>
                     </div>
                     <div className="panel-body">
                         <form className="form-group" onSubmit={this.submitData}>
                             <label htmlFor="investedMoney">Put ($USD)</label>
-                            <input type="number" name="investedMoney" min="0" id="investedMoney" className="form-control" 
+                            <input type="number" name="investedMoney" min="0" id="investedMoney" className="form-control" step="0.01"
                                 value={this.state.investedMoney} onChange={(e) => this.setState({investedMoney: e.target.value})} required/>
                             <label htmlFor="cryptoCurr">Into</label>
                             <select name="cryptoCurr" id="cryptoCurr" className="form-control" 
@@ -139,13 +139,13 @@ class Main extends Component {
                                 value={this.state.purchaseDate} onChange={(e) => this.setState({purchaseDate: e.target.value})} required/>
                             <input className="btn btn-primary" type="submit" value={this.state.status}/>
                             <h4>
-                                It would have costed ${this.state.purchasePrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
+                                It costed ${this.state.purchasePrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
                             </h4>
                             <h4>
-                                And it is currently ${this.state.currentPrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
+                                It is now ${this.state.currentPrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
                             </h4>
                             <h4>
-                                You would currently have ${amountMade.toFixed(rounding)} worth of {this.state.cryptoCurr}
+                                You currently have ${amountMade.toFixed(rounding)} of {this.state.cryptoCurr}
                             </h4>
                             <h4>
                                 {this.state.flavourText}
