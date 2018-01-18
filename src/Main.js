@@ -82,7 +82,9 @@ class Main extends Component {
     
     updateDateRange(e){
         var newMin;
-        if(e.target.value === "BTC"){
+         if(e.target.value === "ADA"){
+            newMin = "2017-10-01";
+        }else if(e.target.value === "BTC"){
             newMin = "2010-08-17";
         }else if(e.target.value === "BCH"){
             newMin = "2017-08-01";
@@ -94,6 +96,8 @@ class Main extends Component {
             newMin = "2015-09-01";
         }else if(e.target.value === "LTC"){
             newMin = "2013-09-29";
+        }else if(e.target.value === "NEO"){
+            newMin = "2016-09-07";
         }else if(e.target.value === "XRP"){
             newMin = "2015-02-01";
         }
@@ -110,7 +114,7 @@ class Main extends Component {
     render() {
         var amountMade = (this.state.investedMoney / this.state.purchasePrice * this.state.currentPrice) || 0;
         var rounding = 2;
-        if(this.state.purchasePrice === "XRP") rounding = 4;
+        if(this.state.cryptoCurr === "XRP" || this.state.cryptoCurr === "ADA" ) rounding = 4;
         if(this.state.cryptoCurr === "DOGE") rounding = 6;
         return (
             <div>
@@ -128,10 +132,12 @@ class Main extends Component {
                                 value={this.state.cryptoCurr} onChange={this.updateDateRange}>
                                 <option value="BTC">Bitcoin (BTC)</option>
                                 <option value="BCH">Bitcoin Cash (BCH)</option>
+                                <option value="ADA">Cardano (ADA)</option>
                                 <option value="DASH">Dash (DASH)</option>
                                 <option value="DOGE">Dogecoin (DOGE)</option>
                                 <option value="ETH">Ethereum (ETH)</option>
                                 <option value="LTC">Litecoin (LTC)</option>
+                                <option value="NEO">NEO (NEO)</option>
                                 <option value="XRP">Ripple (XRP)</option>
                             </select>
                             <label htmlFor="purchaseDate">On</label>
@@ -145,7 +151,7 @@ class Main extends Component {
                                 It is now ${this.state.currentPrice.toFixed(rounding)} for 1 {this.state.cryptoCurr}
                             </h4>
                             <h4>
-                                You currently have ${amountMade.toFixed(rounding)} of {this.state.cryptoCurr}
+                                You currently have ${amountMade.toFixed(rounding)} worth of {this.state.cryptoCurr}
                             </h4>
                             <h4>
                                 {this.state.flavourText}

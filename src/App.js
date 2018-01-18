@@ -26,7 +26,7 @@ class App extends Component {
             <Navbar />
             <div className="container">
                 <button className="btn btn-success" id="addBtn" 
-                    onClick={(e) => {this.setState({numMain: this.state.numMain+1})}}>
+                    onClick={(e) => {if(this.state.numMain < 3) this.setState({numMain: this.state.numMain+1})}}>
                     Add Widget
                 </button>
                 <button className="btn btn-danger" id="removeBtn" 
